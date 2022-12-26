@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Navbar.module.css";
 import {
   AiOutlineMenu,
@@ -9,28 +9,37 @@ import {
 import Logo from "../../images/logo.png";
 
 const Navbar = () => {
+  const [nav, setNav] = useState(false);
+
   return (
     <header className={styles.navbar}>
-      <img src={Logo} alt='/' />;
+      <img src={Logo} alt='/' />
       <nav>
-        <ul className={styles.menu}>
+        <ul
+          className={
+            nav ? [styles.menu, styles.active].join(" ") : [styles.menu]
+          }
+        >
           <li>
-            <a href=''>Leran More</a>
+            <a href='/'>Learn More</a>
           </li>
           <li>
-            <a href=''>Log in</a>
+            <a href='/'>Log in</a>
           </li>
           <li>
-            <a href=''>Sign up</a>
+            <a href='/'>Sign up</a>
           </li>
           <li>
-            <AiOutlineSearch />
+            <AiOutlineSearch syze={25} style={{ marginTop: "6px" }} />
           </li>
           <li>
-            <AiOutlineUser />
+            <AiOutlineUser syze={25} style={{ marginTop: "6px" }} />
           </li>
         </ul>
       </nav>
+      <div onClick={() => setNav(!nav)} className={styles.mobile_btn}>
+        {nav ? <AiOutlineClose size={25} /> : <AiOutlineMenu size={25} />}
+      </div>
     </header>
   );
 };
